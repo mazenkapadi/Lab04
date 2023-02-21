@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!!");
@@ -111,5 +113,50 @@ public class Main {
     /* what is the time complexity of this algorithm and why?
     The time complexity of the given algorithm is O(2^n), where n is the input parameter.
     This is because the function makes two recursive calls for each call that is not a base case.*/
+
+    //Write a function that prints "Hello World" n times recursively.
+    static void printHelloWorld(int n) {
+        if (n == 0) {
+            return; // base case
+        } else {
+            System.out.println("Hello World");
+            printHelloWorld(n - 1); // recursive call with smaller n
+        }
+    }
+
+    //Write a function that returns the sum of all numbers between n1 and n2 that are multiples of 7 using recursion
+    static int sum(int n1, int n2) {
+        if (n1 > n2) {
+            return 0;
+                // base case: return 0 if n1 > n2
+        } else if (n1 % 7 == 0) {
+            return n1 + sum(n1 + 7, n2);
+                // add n1 to sum and make recursive call with n1+7
+        } else {
+            return sum(n1 + 1, n2);
+                // skip n1 and make recursive call with n1+1
+        }
+    }
+
+
+    static int binarySearch(int[] arr, int target, int left, int right) {
+        if (left > right) {
+            return -1;
+                // base case: target not found
+        }
+        int mid = (left + right) / 2;
+                // compute the midpoint of the array
+        if (arr[mid] == target) {
+            return mid;
+                // base case: target found at midpoint
+        } else if (arr[mid] > target) {
+            return binarySearch(arr, target, left, mid-1);
+                // target is in the left half of the array
+        } else {
+            return binarySearch(arr, target, mid+1, right);
+                // target is in the right half of the array
+        }
+    }
+
 
 }
